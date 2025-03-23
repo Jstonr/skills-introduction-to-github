@@ -1,6 +1,7 @@
 from time import sleep
 from random import shuffle
 
+
 class Advice:
   def __init__(self, adviceList, adviceTitle):
     self.adviceList = adviceList
@@ -51,32 +52,33 @@ def custom_advice():
 
 # contrals
 def contrals():
-  contralist = ['Append list', 'Custome advice', 'Exit']
+  contralist = ['Start', 'Custome advice', 'Exit']
   num = 0
   for clist in contralist:
     num+=1
     print(f"{num}. {clist}")
   choose = input("\nEnter 1,2 or 3\n")
   if choose == '1':
-    pass
+    BeMentallyAttractive = ['haveAmbition', 'chaseGoals', 'pursueHobby', 'makeMONEY', 'starSideHustle', 'buildfortheFuture', 'standforSomething']
+    userTitle = 'Be Mentally Attractive'
+
+    vice = Advice(BeMentallyAttractive, userTitle)
+    vice.daily_advice() 
+    print('×'*50)
+    userChoice = str(input("Any advice to add(Y/N): ").strip())
+    if userChoice.lower() == 'y':
+      vice.append_user_advice()
+    else:
+      return contrals()
   elif choose == '2':
-    
+    custom_advice()
   elif choose == '3':
-    breake
+    return exit()
   else:
     return contrals()
     
     
   
 if __name__ == '__main__':
-  BeMentallyAttractive = ['haveAmbition', 'chaseGoals', 'pursueHobby', 'makeMONEY', 'starSideHustle', 'buildfortheFuture', 'standforSomething']
-  userTitle = 'Be Mentally Attractive'
-
-  #vice = Advice(BeMentallyAttractive, userTitle)
-  #vice.daily_advice() 
-  print('×'*51)
-  #vice.append_user_advice()
-  #get_title()
-  #get_adviceList()
- # custom_advice()
-  contrals()
+ while True:
+   contrals()
