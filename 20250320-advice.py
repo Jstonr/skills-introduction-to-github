@@ -20,7 +20,9 @@ class Advice:
 # get and add user advice to the list
   def append_user_advice(self):
     userAdvice = input("Enter any additional advice: ").strip().replace(" ", "").split(",")
+    
     if userAdvice == ['']:
+      print("Empty.")
       self.daily_advice()
     else:
       newAdvice = [self.adviceList.append(advice) for advice in userAdvice]
@@ -31,15 +33,15 @@ class Advice:
 def get_title():
   customTitle = str(input("What is your title? ").strip())
   if customTitle == '':
-    print("Can not be Empty")
+    print("Can not be Empty. Try again...")
     return get_title()
   else:
     return customTitle
 
 def get_adviceList():
   customAdvice = input("Enter list of advice saperated by comma ").strip().split(",")
-  if customAdvice == ['']:
-    print("Can not be Empty")
+  if customAdvice == [''] and [' ']:
+    print("Can not be Empty.Try again...")
     return get_adviceList()
   else:
     return customAdvice
@@ -51,34 +53,32 @@ def custom_advice():
   vice.daily_advice()
 
 # contrals
-def contrals():
-  contralist = ['Start', 'Custome advice', 'Exit']
-  num = 0
-  for clist in contralist:
-    num+=1
-    print(f"{num}. {clist}")
-  choose = input("\nEnter 1,2 or 3\n")
-  if choose == '1':
-    BeMentallyAttractive = ['haveAmbition', 'chaseGoals', 'pursueHobby', 'makeMONEY', 'starSideHustle', 'buildfortheFuture', 'standforSomething']
-    userTitle = 'Be Mentally Attractive'
+def controls():
+  while True:
+    controlist = ['Start', 'Custome advice', 'Exit']
+    for num, option in enumerate(controlist, 1):
+      print(f"{num}. {option}")
+    choose = input("\nEnter 1,2 or 3\n")
+    if choose == '1':
+      BeMentallyAttractive = ['haveAmbition', 'chaseGoals', 'pursueHobby', 'makeMONEY', 'starSideHustle', 'buildfortheFuture', 'standforSomething']
+      userTitle = 'Be Mentally Attractive'
 
-    vice = Advice(BeMentallyAttractive, userTitle)
-    vice.daily_advice() 
-    print('×'*50)
-    userChoice = str(input("Any advice to add(Y/N): ").strip())
-    if userChoice.lower() == 'y':
-      vice.append_user_advice()
+      vice = Advice(BeMentallyAttractive, userTitle)
+      vice.daily_advice() 
+      print('×'*50)
+      userChoice = str(input("Any advice to add(Y/N): ").strip())
+      if userChoice.lower() == 'y':
+        vice.append_user_advice()
+      else:
+        print("\nChoose...")
+        
+    elif choose == '2':
+      custom_advice()
+    elif choose == '3':
+      print("Nice time")
+      return exit()
     else:
-      return contrals()
-  elif choose == '2':
-    custom_advice()
-  elif choose == '3':
-    return exit()
-  else:
-    return contrals()
-    
-    
-  
+      print("Invalid choice. Try again...\n")
+      
 if __name__ == '__main__':
- while True:
-   contrals()
+   controls()
